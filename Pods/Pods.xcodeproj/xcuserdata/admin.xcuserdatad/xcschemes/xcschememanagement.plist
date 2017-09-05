@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-xchat-ios.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-xchat-iosTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-xchat-iosUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SocketRocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>YYModel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2CD3AC00BAAC6B5DC8DDDB44E1B88715</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>45F5CE6DEBF2A7E4A79515A6472A92BC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9B07AEB3A02A1A574A0965F850505C55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9DAF1B83CBD3510AC48C864898E2EF64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3186FF5F130164873A5DC117B7A0CA0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
