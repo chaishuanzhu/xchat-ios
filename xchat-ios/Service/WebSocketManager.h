@@ -42,5 +42,4 @@ typedef enum : NSUInteger {
 
 - (void)ping;
 
-
 @end

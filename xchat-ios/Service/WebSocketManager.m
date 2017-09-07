@@ -206,17 +206,28 @@ static const uint16_t Kport = 7272;
     //    NSLog(@"%@",typeStr);
     if ([typeStr isEqualToString:@"ping"]) {
         [self sendMsg:@"{\"type\":\"pong\"}"];
-    }else{
-        
+        return;
     }
     if ([typeStr isEqualToString:@"login"]) {
-        //        NSLog(@"%@",msgDic);
+//        NSLog(@"%@",msgDic);
+        if (_delegate != nil && [_delegate respondsToSelector:@selector(getMessageSuccess:)]) {
+            [_delegate getMessageSuccess:msgDic];
+        }
+        return;
     }
     if ([typeStr isEqualToString:@"say"]) {
         //        NSLog(@"%@",msgDic);
         if (_delegate != nil && [_delegate respondsToSelector:@selector(getMessageSuccess:)]) {
             [_delegate getMessageSuccess:msgDic];
         }
+        return;
+    }
+    if ([typeStr isEqualToString:@"logout"]) {
+//        NSLog(@"%@",msgDic);
+        if (_delegate != nil && [_delegate respondsToSelector:@selector(getMessageSuccess:)]) {
+            [_delegate getMessageSuccess:msgDic];
+        }
+        return;
     }
 }
 
@@ -227,6 +238,12 @@ static const uint16_t Kport = 7272;
     
     //连接成功了开始发送心跳
     [self initHeartBeat];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *autoLogin = [userDefaults objectForKey:@"autologin"];
+    if (autoLogin) {
+        NSString *userName = [userDefaults objectForKey:@"username"];
+        [self joinRoomWithNickName:userName roomId:@"1"];
+    }
 }
 
 //open失败的时候调用

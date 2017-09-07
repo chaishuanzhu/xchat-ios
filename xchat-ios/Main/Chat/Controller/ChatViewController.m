@@ -7,17 +7,23 @@
 //
 
 #import "ChatViewController.h"
-
+#import "XChatToolBar.h"
 #import "WebSocketManager.h"
 #import "MessageCell.h"
 #import "MessageModel.h"
 #import <YYModel.h>
 
-@interface ChatViewController ()<GetMessageDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ChatViewController ()<GetMessageDelegate, XChatToolbarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tableView;
 
 @property (nonatomic, strong)NSMutableArray *messageArr;
+
+/*!
+ @property
+ @brief 底部输入控件
+ */
+@property (strong, nonatomic) UIView *chatToolbar;
 
 @end
 
@@ -46,18 +52,34 @@
     self.chatToolbar = [[XChatToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - chatbarHeight, self.view.frame.size.width, chatbarHeight)];
     self.chatToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"请输入用户名";
-        textField.text = @"飞鱼";
-    }];
-    UIAlertAction *nextAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[WebSocketManager share]joinRoomWithNickName:alert.textFields[0].text roomId:@"1"];
-    }];
-    [alert addAction:nextAction];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
-    [self presentViewController:alert animated:YES completion:nil];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *userName = [userDefaults objectForKey:@"username"];
+    
+    if (userName.length > 0) {
+        
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = @"请输入用户名";
+            textField.text = @"飞鱼";
+        }];
+        UIAlertAction *nextAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:@"飞鱼" forKey:@"username"];
+            [userDefaults setObject:@"YES" forKey:@"autologin"];
+            [[WebSocketManager share]joinRoomWithNickName:alert.textFields[0].text roomId:@"1"];
+        }];
+        [alert addAction:nextAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)setChatToolbar:(XChatToolBar *)chatToolbar
@@ -138,9 +160,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    MessageModel *msgModel = _messageArr[indexPath.row];
+    if ([msgModel.type isEqualToString:@"login"] || [msgModel.type isEqualToString:@"logout"]) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"logincell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"logincell"];
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.font = [UIFont systemFontOfSize:12];
+            cell.contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        }
+        if ([msgModel.type isEqualToString:@"login"]) {
+            cell.textLabel.text = [NSString stringWithFormat:@"欢迎%@加入聊天室", msgModel.client_name];
+        }else{
+            cell.textLabel.text = [NSString stringWithFormat:@"%@离开了聊天室", msgModel.from_client_name];
+        }
+        return cell;
+    }
+    
     MessageCell *msgCell = [tableView dequeueReusableCellWithIdentifier:@"msgcell"];
     if (msgCell == nil) {
         msgCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"msgcell"];
+
     }
     [msgCell refreshCell: _messageArr[indexPath.row]];
     return msgCell;
@@ -148,12 +188,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     MessageModel *model = self.messageArr[indexPath.row];
+    if ([model.type isEqualToString:@"login"] || [model.type isEqualToString:@"logout"]) {
+        return 25;
+    }
+
     CGRect rec =  [model.content boundingRectWithSize:CGSizeMake(200, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17]} context:nil];
     return rec.size.height + 75;
 }
 
 
-#pragma mark - EMChatToolbarDelegate
+#pragma mark - XChatToolbarDelegate
 
 - (void)chatToolbarDidChangeFrameToHeight:(CGFloat)toHeight {
     [UIView animateWithDuration:0.3 animations:^{

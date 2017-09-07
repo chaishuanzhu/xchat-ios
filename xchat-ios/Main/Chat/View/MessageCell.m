@@ -29,7 +29,7 @@
         [self.contentView addSubview:_imgView];
         
         _nameLabel = [[UILabel alloc]init];
-        _nameLabel.font = [UIFont systemFontOfSize:15];
+        _nameLabel.font = [UIFont systemFontOfSize:19];
         [self.contentView addSubview:_nameLabel];
         
         self.backView = [[UIImageView alloc] init];
@@ -37,6 +37,7 @@
         
         _contentLabel = [[UILabel alloc]init];
         _contentLabel.numberOfLines = 0;
+        _contentLabel.font = [UIFont systemFontOfSize:17];
         [self.backView addSubview:_contentLabel];
     }
     return self;
