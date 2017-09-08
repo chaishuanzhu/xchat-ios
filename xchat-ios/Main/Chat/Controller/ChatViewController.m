@@ -7,17 +7,22 @@
 //
 
 #import "ChatViewController.h"
+#import <UserNotifications/UserNotifications.h>
 #import "XChatToolBar.h"
 #import "WebSocketManager.h"
 #import "MessageCell.h"
 #import "MessageModel.h"
 #import <YYModel.h>
+#import "AppDelegate.h"
+#import "BaseMacros.h"
 
 @interface ChatViewController ()<GetMessageDelegate, XChatToolbarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)UITableView *tableView;
 
 @property (nonatomic, strong)NSMutableArray *messageArr;
+
+@property (nonatomic, assign)NSInteger badgeNumber;
 
 /*!
  @property
@@ -32,6 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.badgeNumber = 0;
     
     [[WebSocketManager share] connect];
     [WebSocketManager share].delegate = self;
@@ -52,7 +59,7 @@
     self.chatToolbar = [[XChatToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - chatbarHeight, self.view.frame.size.width, chatbarHeight)];
     self.chatToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setbadgeNumber) name:@"iconbadgenumber" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -80,6 +87,11 @@
         
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+- (void)dealloc{
+    //移除观察者，Observer不能为nil
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)setChatToolbar:(XChatToolBar *)chatToolbar
@@ -134,12 +146,53 @@
 
 
 - (void)getMessageSuccess:(NSDictionary *)dic{
-    
-    NSLog(@"%@",dic);
-    
     MessageModel *msgModel = [MessageModel yy_modelWithDictionary:dic];
     [_messageArr addObject:msgModel];
-    NSLog(@"%@",_messageArr);
+    DLog(@"%@",_messageArr);
+
+    UIApplication *application = [UIApplication sharedApplication] ;
+    [application setApplicationIconBadgeNumber:++_badgeNumber];
+    
+    // 使用 UNUserNotificationCenter 来管理通知
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    if ([msgModel.type isEqualToString:@"login"]) {
+        content.title = [NSString localizedUserNotificationStringForKey:@"系统" arguments:nil];
+        content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"欢迎%@加入聊天室", msgModel.client_name]
+                                                             arguments:nil];
+    }
+    if ([msgModel.type isEqualToString:@"logout"]) {
+        content.title = [NSString localizedUserNotificationStringForKey:@"系统" arguments:nil];
+        content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@离开了聊天室", msgModel.from_client_name]
+                                                             arguments:nil];
+    }
+    if ([msgModel.type isEqualToString:@"say"]) {
+        content.title = [NSString localizedUserNotificationStringForKey:msgModel.from_client_name arguments:nil];
+        content.body = [NSString localizedUserNotificationStringForKey:msgModel.content
+                                                             arguments:nil];
+    }
+    content.sound = [UNNotificationSound defaultSound];
+    
+    // 在 alertTime 后推送本地推送
+    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
+                                                  triggerWithTimeInterval:1.0 repeats:NO];
+    
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"localnotification"
+                                                                          content:content trigger:trigger];
+    
+    //添加推送成功后的处理！
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (!error) {
+            
+        }
+    }];
+
+    
+    DLog(@"%@",dic);
+    
+    
     [_tableView reloadData];
     dispatch_async(dispatch_get_main_queue(), ^{
         [_tableView layoutSubviews];
@@ -147,6 +200,7 @@
             [_tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height-self.tableView.bounds.size.height)];
         }
     });
+    
 }
 
 
@@ -233,6 +287,13 @@
 - (void)didSendText:(NSString *)text withExt:(NSDictionary*)ext {
     
     [self keyBoardHidden];
+}
+
+- (void)setbadgeNumber{
+    
+    self.badgeNumber = 0;
+    UIApplication *application = [UIApplication sharedApplication];
+    [application setApplicationIconBadgeNumber:_badgeNumber];
 }
 
 @end

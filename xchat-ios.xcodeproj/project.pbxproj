@@ -72,6 +72,7 @@
 		847EBFF11F6293FD00A4EBC9 /* AV_chat_send_msg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AV_chat_send_msg@3x.png"; sourceTree = "<group>"; };
 		847EBFF41F62947800A4EBC9 /* AV_chat_recive_msg@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AV_chat_recive_msg@1x.png"; sourceTree = "<group>"; };
 		847EBFF61F62947F00A4EBC9 /* AV_chat_recive_msg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AV_chat_recive_msg@3x.png"; sourceTree = "<group>"; };
+		847EBFF81F62CFEF00A4EBC9 /* BaseMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseMacros.h; path = "xchat-ios/Main/Chat/View/BaseMacros.h"; sourceTree = SOURCE_ROOT; };
 		84E0F8191F5C548700174CEB /* WebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketManager.h; sourceTree = "<group>"; };
 		84E0F81A1F5C548700174CEB /* WebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketManager.m; sourceTree = "<group>"; };
 		84E0F81C1F5C551D00174CEB /* Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Json.h; sourceTree = "<group>"; };
@@ -224,6 +225,7 @@
 		84E0F8111F5C543600174CEB /* Macro */ = {
 			isa = PBXGroup;
 			children = (
+				847EBFF81F62CFEF00A4EBC9 /* BaseMacros.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -407,7 +409,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -784,6 +786,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 86V8T3P4C5;
 				INFOPLIST_FILE = "xchat-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.chaisz.xchat-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -797,6 +800,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 86V8T3P4C5;
 				INFOPLIST_FILE = "xchat-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.chaisz.xchat-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
