@@ -210,6 +210,11 @@ static const uint16_t Kport = 7272;
     }
     if ([typeStr isEqualToString:@"login"]) {
 //        NSLog(@"%@",msgDic);
+        NSArray *allKeys = [msgDic allKeys];
+        if ([allKeys containsObject:@"client_list"]) {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:[msgDic objectForKey:@"client_id"] forKey:@"client_id"];
+        }
         if (_delegate != nil && [_delegate respondsToSelector:@selector(getMessageSuccess:)]) {
             [_delegate getMessageSuccess:msgDic];
         }
