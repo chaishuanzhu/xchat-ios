@@ -1,15 +1,18 @@
 PODS:
   - SocketRocket (0.5.1)
+  - SVProgressHUD (2.1.2)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
   - SocketRocket
+  - SVProgressHUD
   - YYModel
 
 SPEC CHECKSUMS:
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: e9ca30db9f9e5c59472997fe4a49134a8c73c9db
+PODFILE CHECKSUM: 6a6ac87f01c942d7f8b39a7d800ca72c863b3085
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

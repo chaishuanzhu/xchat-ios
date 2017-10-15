@@ -148,51 +148,7 @@
 - (void)getMessageSuccess:(NSDictionary *)dic{
     MessageModel *msgModel = [MessageModel yy_modelWithDictionary:dic];
     [_messageArr addObject:msgModel];
-    DLog(@"%@",_messageArr);
-
-    UIApplication *application = [UIApplication sharedApplication] ;
-    [application setApplicationIconBadgeNumber:++_badgeNumber];
-    
-    // 使用 UNUserNotificationCenter 来管理通知
-    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-    
-    //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
-    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-    if ([msgModel.type isEqualToString:@"login"]) {
-        content.title = [NSString localizedUserNotificationStringForKey:@"系统" arguments:nil];
-        content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"欢迎%@加入聊天室", msgModel.client_name]
-                                                             arguments:nil];
-    }
-    if ([msgModel.type isEqualToString:@"logout"]) {
-        content.title = [NSString localizedUserNotificationStringForKey:@"系统" arguments:nil];
-        content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@离开了聊天室", msgModel.from_client_name]
-                                                             arguments:nil];
-    }
-    if ([msgModel.type isEqualToString:@"say"]) {
-        content.title = [NSString localizedUserNotificationStringForKey:msgModel.from_client_name arguments:nil];
-        content.body = [NSString localizedUserNotificationStringForKey:msgModel.content
-                                                             arguments:nil];
-    }
-    content.sound = [UNNotificationSound defaultSound];
-    
-    // 在 alertTime 后推送本地推送
-    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
-                                                  triggerWithTimeInterval:1.0 repeats:NO];
-    
-    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"localnotification"
-                                                                          content:content trigger:trigger];
-    
-    //添加推送成功后的处理！
-    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        if (!error) {
-            
-        }
-    }];
-
-    
-    DLog(@"%@",dic);
-    
-    
+    DDLog(@"%@",_messageArr);
     [_tableView reloadData];
     dispatch_async(dispatch_get_main_queue(), ^{
         [_tableView layoutSubviews];
@@ -289,11 +245,5 @@
     [self keyBoardHidden];
 }
 
-- (void)setbadgeNumber{
-    
-    self.badgeNumber = 0;
-    UIApplication *application = [UIApplication sharedApplication];
-    [application setApplicationIconBadgeNumber:_badgeNumber];
-}
 
 @end

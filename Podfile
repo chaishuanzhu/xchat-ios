@@ -7,7 +7,7 @@ target 'xchat-ios' do
 
 	pod 'SocketRocket'
 	pod 'YYModel'
-
+    pod 'SVProgressHUD'
   # Pods for xchat-ios
 
   target 'xchat-iosTests' do
