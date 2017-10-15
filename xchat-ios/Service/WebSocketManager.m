@@ -9,7 +9,8 @@
 #import "WebSocketManager.h"
 
 #import "SocketRocket.h"
-#import "Json.h"
+#import "NSDictionary+JSON.h"
+#import <SVProgressHUD.h>
 
 #define dispatch_main_async_safe(block)\
 if ([NSThread isMainThread]) {\
@@ -66,6 +67,8 @@ static const uint16_t Kport = 7272;
     
     //连接
     [webSocket open];
+    [SVProgressHUD showWithStatus:@"连接中"];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     
 }
 
@@ -85,7 +88,7 @@ static const uint16_t Kport = 7272;
             NSDictionary *heartMessage = @{
                                            @"type":@"ping"
                                            };
-            NSString *heartString = [Json jsonEncode:heartMessage];
+            NSString *heartString = [heartMessage jsonEncode];
             [weakSelf sendMsg:heartString];
             //            [weakSelf ping];
         }];
@@ -116,6 +119,7 @@ static const uint16_t Kport = 7272;
 //建立连接
 - (void)connect
 {
+    
     [self initSocket];
     
     //每次正常连接的时候清零重连时间
@@ -139,7 +143,7 @@ static const uint16_t Kport = 7272;
                              @"client_name":nickname,
                              @"room_id":room_id
                              };
-    NSString *msgString = [Json jsonEncode:msgDic];
+    NSString *msgString = [msgDic jsonEncode];
     [webSocket send:msgString];
     
 }
@@ -153,7 +157,7 @@ static const uint16_t Kport = 7272;
                              @"to_client_name":@"",
                              @"content":msg
                              };
-    NSString *msgString = [Json jsonEncode:msgDic];
+    NSString *msgString = [msgDic jsonEncode];
     [webSocket send:msgString];
     
 }
@@ -240,7 +244,8 @@ static const uint16_t Kport = 7272;
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket
 {
     NSLog(@"连接成功");
-    
+    [SVProgressHUD showWithStatus:@"连接成功"];
+    [SVProgressHUD dismiss];
     //连接成功了开始发送心跳
     [self initHeartBeat];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -255,7 +260,8 @@ static const uint16_t Kport = 7272;
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error
 {
     NSLog(@"连接失败.....\n%@",error);
-    
+    [SVProgressHUD showWithStatus:@"连接失败"];
+    [SVProgressHUD dismiss];
     //失败了就去重连
     [self reConnect];
 }

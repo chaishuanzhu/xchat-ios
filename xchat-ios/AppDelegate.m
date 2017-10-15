@@ -10,6 +10,7 @@
 #import "WebSocketManager.h"
 #import "ChatViewController.h"
 #import <UserNotifications/UserNotifications.h>
+#import "BaseMacros.h"
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
@@ -25,8 +26,10 @@
     
     // 注册
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-    [center requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
+    [center requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionCarPlay completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (!error) {
+            
+            [[UIApplication sharedApplication]registerForRemoteNotifications];
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注册成功" message:nil delegate:nil cancelButtonTitle:@"👌" otherButtonTitles:nil, nil];
 //            [alert show];
         }
@@ -75,18 +78,25 @@
 }
 
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    DDLog(@"regisger success:%@", deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error{
+    
+    DDLog(@"%@",error);
+}
 
 
 /*APP 在前台时 收到通知*/
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
-//    UIAlertView *ALERT = [[UIAlertView alloc] initWithTitle:@"willPresentNotification----- 1" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//    [ALERT show];
+
 }
 
 /*APP 收到通知*/
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler {
-//    UIAlertView *ALERT = [[UIAlertView alloc] initWithTitle:@"didReceiveNotificationResponse----- 2" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//    [ALERT show];
+
 }
 
 

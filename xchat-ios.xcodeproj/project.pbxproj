@@ -10,6 +10,7 @@
 		1D9A0E81DB89E470B5C5B982 /* libPods-xchat-iosUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A78A0F83FD6D1608548C8BE /* libPods-xchat-iosUITests.a */; };
 		452CFAD0EB5EE8CCDC482ACE /* libPods-xchat-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3135EBBFD0D5AB9326A856F4 /* libPods-xchat-ios.a */; };
 		819DDF6BF2339C53E6CCE541 /* libPods-xchat-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A50F0B750DE908063FBCB014 /* libPods-xchat-iosTests.a */; };
+		844603E31F938DFB007946CC /* NSDictionary+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 844603E21F938DFB007946CC /* NSDictionary+JSON.m */; };
 		84729D201F4B30F700B6D20B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84729D1F1F4B30F700B6D20B /* main.m */; };
 		84729D231F4B30F700B6D20B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84729D221F4B30F700B6D20B /* AppDelegate.m */; };
 		84729D291F4B30F700B6D20B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84729D271F4B30F700B6D20B /* Main.storyboard */; };
@@ -23,7 +24,6 @@
 		847EBFF51F62947800A4EBC9 /* AV_chat_recive_msg@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847EBFF41F62947800A4EBC9 /* AV_chat_recive_msg@1x.png */; };
 		847EBFF71F62947F00A4EBC9 /* AV_chat_recive_msg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847EBFF61F62947F00A4EBC9 /* AV_chat_recive_msg@3x.png */; };
 		84E0F81B1F5C548800174CEB /* WebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E0F81A1F5C548700174CEB /* WebSocketManager.m */; };
-		84E0F81E1F5C551D00174CEB /* Json.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E0F81D1F5C551D00174CEB /* Json.m */; };
 		84E0F8211F5C559700174CEB /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E0F8201F5C559700174CEB /* ChatViewController.m */; };
 		84E0F8241F5C560700174CEB /* XChatToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E0F8231F5C560700174CEB /* XChatToolBar.m */; };
 		84E0F8271F5C562A00174CEB /* XChatTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E0F8261F5C562A00174CEB /* XChatTextView.m */; };
@@ -53,6 +53,9 @@
 /* Begin PBXFileReference section */
 		031101602E90337366BEEC17 /* Pods-xchat-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xchat-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xchat-iosUITests/Pods-xchat-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3135EBBFD0D5AB9326A856F4 /* libPods-xchat-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-xchat-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		844603E11F938DFB007946CC /* NSDictionary+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSON.h"; sourceTree = "<group>"; };
+		844603E21F938DFB007946CC /* NSDictionary+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSON.m"; sourceTree = "<group>"; };
+		84727D961F65907900634A11 /* xchat-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "xchat-ios.entitlements"; sourceTree = "<group>"; };
 		84729D1B1F4B30F600B6D20B /* xchat-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xchat-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84729D1F1F4B30F700B6D20B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84729D211F4B30F700B6D20B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -75,8 +78,6 @@
 		847EBFF81F62CFEF00A4EBC9 /* BaseMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseMacros.h; path = "xchat-ios/Main/Chat/View/BaseMacros.h"; sourceTree = SOURCE_ROOT; };
 		84E0F8191F5C548700174CEB /* WebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketManager.h; sourceTree = "<group>"; };
 		84E0F81A1F5C548700174CEB /* WebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketManager.m; sourceTree = "<group>"; };
-		84E0F81C1F5C551D00174CEB /* Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Json.h; sourceTree = "<group>"; };
-		84E0F81D1F5C551D00174CEB /* Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Json.m; sourceTree = "<group>"; };
 		84E0F81F1F5C559700174CEB /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		84E0F8201F5C559700174CEB /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		84E0F8221F5C560700174CEB /* XChatToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XChatToolBar.h; sourceTree = "<group>"; };
@@ -139,6 +140,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		844603E01F938DE7007946CC /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				844603E11F938DFB007946CC /* NSDictionary+JSON.h */,
+				844603E21F938DFB007946CC /* NSDictionary+JSON.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		84729D121F4B30F500B6D20B = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 		84729D1D1F4B30F600B6D20B /* xchat-ios */ = {
 			isa = PBXGroup;
 			children = (
+				84727D961F65907900634A11 /* xchat-ios.entitlements */,
 				84729D211F4B30F700B6D20B /* AppDelegate.h */,
 				84729D221F4B30F700B6D20B /* AppDelegate.m */,
 				84E0F82E1F5C621F00174CEB /* Resource */,
@@ -208,18 +219,11 @@
 		84E0F80F1F5C543600174CEB /* Expand */ = {
 			isa = PBXGroup;
 			children = (
-				84E0F8101F5C543600174CEB /* Category */,
+				844603E01F938DE7007946CC /* Category */,
 				84E0F8111F5C543600174CEB /* Macro */,
 				84E0F8121F5C543600174CEB /* Tool */,
 			);
 			path = Expand;
-			sourceTree = "<group>";
-		};
-		84E0F8101F5C543600174CEB /* Category */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 		84E0F8111F5C543600174CEB /* Macro */ = {
@@ -233,8 +237,6 @@
 		84E0F8121F5C543600174CEB /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				84E0F81C1F5C551D00174CEB /* Json.h */,
-				84E0F81D1F5C551D00174CEB /* Json.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -405,10 +407,13 @@
 				TargetAttributes = {
 					84729D1A1F4B30F600B6D20B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 86V8T3P4C5;
+						DevelopmentTeam = 9797WQTTKA;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -488,13 +493,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-xchat-ios-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4B4B2F13146D01CDFAD3C457 /* [CP] Check Pods Manifest.lock */ = {
@@ -503,13 +511,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-xchat-iosTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4EC42D9930049044D665BFE8 /* [CP] Copy Pods Resources */ = {
@@ -563,9 +574,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-xchat-ios/Pods-xchat-ios-resources.sh",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -608,13 +622,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-xchat-iosUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -632,7 +649,7 @@
 				84E0F81B1F5C548800174CEB /* WebSocketManager.m in Sources */,
 				84E0F82A1F5C5BFC00174CEB /* MessageCell.m in Sources */,
 				84E0F8271F5C562A00174CEB /* XChatTextView.m in Sources */,
-				84E0F81E1F5C551D00174CEB /* Json.m in Sources */,
+				844603E31F938DFB007946CC /* NSDictionary+JSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,11 +801,12 @@
 			baseConfigurationReference = E02443CF3AFF9ADB487111AF /* Pods-xchat-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 86V8T3P4C5;
+				CODE_SIGN_ENTITLEMENTS = "xchat-ios/xchat-ios.entitlements";
+				DEVELOPMENT_TEAM = 9797WQTTKA;
 				INFOPLIST_FILE = "xchat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.chaisz.xchat-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.colombosc.xchat-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -798,11 +816,12 @@
 			baseConfigurationReference = FD9332DF83FB9A5404DD4FCA /* Pods-xchat-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 86V8T3P4C5;
+				CODE_SIGN_ENTITLEMENTS = "xchat-ios/xchat-ios.entitlements";
+				DEVELOPMENT_TEAM = 9797WQTTKA;
 				INFOPLIST_FILE = "xchat-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "xyz.chaisz.xchat-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.colombosc.xchat-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
